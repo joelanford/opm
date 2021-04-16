@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/joelanford/declcfg/internal/property"
+	"github.com/joelanford/opm/internal/property"
 )
 
 func TestParseProperties(t *testing.T) {

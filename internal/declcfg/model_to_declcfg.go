@@ -3,8 +3,8 @@ package declcfg
 import (
 	"sort"
 
-	"github.com/joelanford/declcfg/internal/model"
-	"github.com/joelanford/declcfg/internal/property"
+	"github.com/joelanford/opm/internal/model"
+	"github.com/joelanford/opm/internal/property"
 )
 
 func ConvertFromModel(mpkgs model.Model) DeclarativeConfig {

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/joelanford/declcfg/internal/cmd"
+	"github.com/joelanford/opm/internal/cmd"
 )
 
 func main() {

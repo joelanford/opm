@@ -1,7 +1,6 @@
 package declcfg
 
 import (
-	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -11,7 +10,7 @@ import (
 	"k8s.io/apimachinery/pkg/util/rand"
 	"k8s.io/apimachinery/pkg/util/sets"
 
-	"github.com/joelanford/declcfg/internal/property"
+	"github.com/joelanford/opm/internal/property"
 )
 
 func FormatDir(configDir string) error {
@@ -37,7 +36,12 @@ func FormatDir(configDir string) error {
 			return nil
 		}
 		if len(fileCfg.Others) > 0 {
-			return errors.New("unknown meta objects exist, can't safely fmt due to possibility of unknown file references")
+			schemas := []string{}
+			for _, b := range fileCfg.Others {
+				schemas = append(schemas, fmt.Sprintf("%q", b.Schema))
+			}
+			set := sets.NewString(schemas...)
+			return fmt.Errorf("unknown meta objects exist (schemas: %s), can't safely fmt due to possibility of breaking unknown file references", strings.Join(set.List(), ","))
 		}
 		for _, pkg := range fileCfg.Packages {
 			if len(pkg.Properties) > 0 {
@@ -46,7 +50,7 @@ func FormatDir(configDir string) error {
 					propertyTypes = append(propertyTypes, fmt.Sprintf("%q", p.Type))
 				}
 				set := sets.NewString(propertyTypes...)
-				return fmt.Errorf("unknown properties on package %q (types: %s): can't safely fmt due to possibility of unknown file references", pkg.Name, strings.Join(set.List(), ","))
+				return fmt.Errorf("unknown properties on package %q (types: %s): can't safely fmt due to possibility of breaking unknown file references", pkg.Name, strings.Join(set.List(), ","))
 			}
 		}
 		for _, b := range fileCfg.Bundles {
@@ -60,7 +64,7 @@ func FormatDir(configDir string) error {
 					propertyTypes = append(propertyTypes, fmt.Sprintf("%q", p.Type))
 				}
 				set := sets.NewString(propertyTypes...)
-				return fmt.Errorf("unknown properties on bundle %q (types: %s): can't safely fmt due to possibility of unknown file references", b.Name, strings.Join(set.List(), ","))
+				return fmt.Errorf("unknown properties on bundle %q (types: %s): can't safely fmt due to possibility of breaking unknown file references", b.Name, strings.Join(set.List(), ","))
 			}
 			for _, obj := range props.BundleObjects {
 				if obj.IsRef() {

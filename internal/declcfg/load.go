@@ -11,7 +11,7 @@ import (
 	"github.com/operator-framework/api/pkg/operators"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	"github.com/joelanford/declcfg/internal/property"
+	"github.com/joelanford/opm/internal/property"
 )
 
 func LoadDir(configDir string) (*DeclarativeConfig, error) {

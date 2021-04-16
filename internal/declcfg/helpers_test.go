@@ -10,8 +10,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/joelanford/declcfg/internal/model"
-	"github.com/joelanford/declcfg/internal/property"
+	"github.com/joelanford/opm/internal/model"
+	"github.com/joelanford/opm/internal/property"
 )
 
 func buildValidDeclarativeConfig(includeUnrecognized bool) DeclarativeConfig {

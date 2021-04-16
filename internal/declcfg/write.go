@@ -9,7 +9,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/joelanford/declcfg/internal/property"
+	"github.com/joelanford/opm/internal/property"
 )
 
 const (

@@ -13,9 +13,9 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
-	"github.com/joelanford/declcfg/internal/declcfg"
-	"github.com/joelanford/declcfg/internal/model"
-	"github.com/joelanford/declcfg/internal/property"
+	"github.com/joelanford/opm/internal/declcfg"
+	"github.com/joelanford/opm/internal/model"
+	"github.com/joelanford/opm/internal/property"
 )
 
 func Execute() {
@@ -24,17 +24,22 @@ func Execute() {
 	}
 }
 func newCmd() *cobra.Command {
-	cmd := &cobra.Command{
-		Use:   "declcfg",
+	root := &cobra.Command{
+		Use:   "opm",
+		Short: "Manage your OLM indexes",
+	}
+	alpha := &cobra.Command{
+		Use:   "alpha",
 		Short: "Small focused tools to manage your OLM declarative config-based indexes.",
 	}
 
-	cmd.AddCommand(
+	root.AddCommand(alpha)
+	alpha.AddCommand(
 		newBlobCmd(),
 		newValidateCmd(),
 		newFmtCmd(),
 	)
-	return cmd
+	return root
 }
 
 func newBlobCmd() *cobra.Command {

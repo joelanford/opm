@@ -3,7 +3,7 @@ package declcfg
 import (
 	"fmt"
 
-	"github.com/joelanford/declcfg/internal/property"
+	"github.com/joelanford/opm/internal/property"
 )
 
 func parseProperties(props []property.Property) (*property.Properties, error) {

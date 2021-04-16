@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/joelanford/declcfg/internal/model"
+	"github.com/joelanford/opm/internal/model"
 )
 
 func TestConvertFromModel(t *testing.T) {

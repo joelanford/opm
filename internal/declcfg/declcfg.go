@@ -3,7 +3,7 @@ package declcfg
 import (
 	"encoding/json"
 
-	"github.com/joelanford/declcfg/internal/property"
+	"github.com/joelanford/opm/internal/property"
 )
 
 const (
